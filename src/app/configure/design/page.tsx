@@ -27,7 +27,7 @@ const Page = async({searchParams} : PageProps) =>{
     const {imageUrl , width , height} = configuration
 
 
-    return <DesignConfigurator  configID={configuration.id} imageDimensions={{width , height}} imageUrl={imageUrl}/>
+    return <DesignConfigurator  configId={configuration.id} imageDimensions={{width , height}} imageUrl={imageUrl}/>
 }
 
 export default Page 
