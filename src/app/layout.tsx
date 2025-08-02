@@ -33,17 +33,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
-        <main className="flex flex-col min-h-[calc(100vh-3.5rem-1px)]">
+        <main className="flex grainy-light flex-col min-h-[calc(100vh-3.5rem-1px)]">
           <div className="flex-1 flex flex-col h-ful">
-            <Providers>
-              {children}
-            </Providers>
+            <Providers>{children}</Providers>
           </div>
-          
-        <Footer />
+
+          <Footer />
         </main>
         <Toaster />
-
       </body>
     </html>
   );

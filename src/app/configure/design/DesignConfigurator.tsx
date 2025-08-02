@@ -164,12 +164,12 @@ const DesignConfigurator = ({
     <div className="relative mt-20 grid grid-cols-1 lg:grid-cols-3 mb-20 px-20">
       <div
         ref={containerRef}
-        className="relative h-[37.5rem] overflow-hidden col-span-2 w-full max-w-4xl flex items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        className="relative h-[37.5rem] overflow-hidden col-span-2 w-full max-w-4xl flex items-center justify-center rounded-lg border-2 border-dashed border-blue-900 text-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
       >
         <div className="relative w-60 bg-opacity-50 pointer-events-none aspect-[896/1831]">
           <AspectRatio
             ref={phoneCaseRef}
-            ratio={869 / 1831}
+            ratio={896 / 1831}
             className="pointer-events-none relative z-50 aspect-[869/1831] w-full"
           >
             <NextImage
@@ -401,7 +401,7 @@ const DesignConfigurator = ({
                     100
                 )}
               </p>
-              <Button onClick={()=> saveConfig({
+              <Button  onClick={()=> saveConfig({
                 configId , 
                 color : options.color.value ,
                 finish : options.finish.value ,

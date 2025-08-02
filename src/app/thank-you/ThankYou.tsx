@@ -1,0 +1,85 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
+import { getPaymentStatus } from "./actions";
+import { useSearchParams } from "next/navigation";
+import { Loader2 } from "lucide-react";
+
+const ThankYou = () => {
+  const searchParams = useSearchParams();
+  const orderId = searchParams.get("orderId") || "";
+
+  const { data } = useQuery({
+    queryKey: ["get-payment-status"],
+    queryFn: async () => await getPaymentStatus({ orderId }),
+    retry: true,
+    retryDelay: 500,
+  });
+
+  if (data === undefined) {
+    return (
+      <div className="w-full mt-24 flex justify-center">
+        <div className="flex flex-col items-center gap-2">
+          <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
+          <h3 className="font-semibold text-xl ">loading your order.....</h3>
+          <p>it wont take long so please wait</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (data === false) {
+    return (
+      <div className="w-full mt-24 flex justify-center">
+        <div className="flex flex-col items-center gap-2">
+          <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
+          <h3 className="font-semibold text-xl ">verifying your payment....</h3>
+          <p>it wont take long so please wait</p>
+        </div>
+      </div>
+    );
+  }
+
+  const { configuration, billingAddress, shippingAddress, amount } = data;
+  const { color } = configuration;
+
+  return (
+    <div className="bg-white">
+      <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <div className="max-w-xl">
+          <p className="text-base font-medium text-primary">thank you</p>
+          <h1 className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">
+            your case is own teh way
+          </h1>
+          <p className="mt-2 text-base text-zinc-500">
+            we have recieved your order adn now we are processing it{" "}
+          </p>
+          <div className="mt-12 text-sm font-medium">
+            <p className="text-zinc-900">ordre number</p>
+            <p className="mt-2 text-zinc-500">{orderId}</p>
+          </div>
+        </div>
+
+        <div className="mt-10 border-t border-zinc-200">
+          <div className="mt-10 flex flex-auto flex-col">
+            <h4 className="font-semibold text-zinc-900">
+              you have made a preety great choise
+            </h4>
+            <p className="mt-2 text-sm text-zinc-600">
+              we at case cobra believe that phose case doest only need to look
+              good but also last your for ..... we also offer a years of
+              gratadsfasdf if your case is not havng adsfasd fbut we a , we have
+              something of
+            </p>
+          </div>
+        </div>
+
+        <div className="flex space-x-6 overflow-hidden mt-4 rounded-xl bg-gray-900/5 ring-1 ring-inset ring-gray-900/10 lg:rounded-2xl ">
+        
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ThankYou;
